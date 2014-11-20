@@ -1,0 +1,49 @@
+<div id="tooltip" class="message"></div>
+<div id="close-panel"></div>
+<div id="header">
+	<div id="header-icon"></div>
+	<div id="header-text">
+		<div id="ghostery-findings">
+			<div id="ghostery-findings-text" class="ellipsis">
+				<%- t('panel_title_not_scanned') %>
+			</div>
+			<div id="website-info">
+				<div id="website-url" class="ellipsis"></div>
+			</div>
+		</div>
+	</div>
+	<div class="tooltip" id="settings-button" title="<%- t('panel_tooltip_settings') %>">
+	</div>
+</div>
+
+<div id="settings" class="no-select">
+	<div class="settings-buttons" id="options-button"><%- t('panel_settings_options') %></div>
+	<div class="settings-buttons" id="support-button"><%- t('panel_settings_support') %></div>
+	<div class="settings-buttons" id="about-button"><%- t('panel_settings_about') %></div>
+	<div class="settings-buttons" id="share-button"><%- t('panel_settings_share') %></div>
+</div>
+
+<div id="apps-div">
+	<div class="no-trackers">
+		<div class="vertical-center">
+			<%= t('panel_not_scanned') %>
+		</div>
+	</div>
+</div>
+
+<div id="reload"><%= t('panel_needs_reload') %></div>
+<div id="whitelisted"><%= t('panel_title_whitelisted',"", "") + "<br>" + t('panel_needs_reload') %></div>
+<div id="paused"><%= t('panel_title_paused', "", "") + "<br>" + t('panel_needs_reload') %></div>
+<div id="paused-arrow"></div>
+<div id="whitelisted-arrow"></div>
+
+<div id="footer" class="no-select">
+	<div unselectable="on" class="footer-button ellipsis left" id="pause-blocking-button" style="margin-left: 7px;" title="<%- t('panel_button_pause_blocking_tooltip') %>">
+		<div class="footer-button-desc"><%- t('panel_button_pause_blocking') %></div>
+	</div>
+<!-- 	<div unselectable="on" class="footer-button ellipsis left disabled" id="whitelisting-button" title="">
+		<div class="footer-button-desc"> </div>
+	</div>
+	<div class="footer-button left tooltip" id="help-button" title=""></div> -->
+
+ </div>
