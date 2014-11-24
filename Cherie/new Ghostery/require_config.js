@@ -12,6 +12,9 @@ var require = {
 		moment: "lib/vendor/moment/moment",
 		scrollintogreatness: "lib/vendor/jquery.scrollintogreatness-2.0.0",
 		bootstrap: "lib/vendor/bootstrap/bootstrap"
+		// d3: "lib/vendor/d3/d3"
+		// d3geom: "lib/vendor/d3/d3.geom"
+		// d3layout: "lib/vendor/d3/d3.layout"
 	},
 	shim: {
 		underscore: {

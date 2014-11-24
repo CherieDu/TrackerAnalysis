@@ -11,18 +11,19 @@
 <link href="data/css/panel.css" media="screen" rel="stylesheet" type="text/css">
 <link href="lib/vendor/bootstrap/bootstrap.css" media="screen" rel="stylesheet" type="text/css">
 <link href="lib/vendor/bootstrap/bootstrap2.css" media="screen" rel="stylesheet" type="text/css">
+        
 
 </head>
 <body>
-    <div style="width:335px; background-color:red; float: left;">
+    <div style="width:300px; float: left;">
         <div id="content" ></div>
     </div>
+    <div style="width:335px;  float: left;">
+        <p>This is the place for graph</p>
+        <div id="chart"></div>
 
         
-
-        <div id="graph"   style="width:335px; background-color:blue; float: left;">
-            <p>This is the place for graph</p>
-        </div>  
+    </div>  
 
 <!-- <div class="row">
     <div class = "col-md-6" >
@@ -36,6 +37,14 @@
 </div> -->
 
 <script src="require_config.js"></script>
+
+
 <script src="lib/vendor/require.js" data-main="data/js/panel"></script>
+<script src="lib/vendor/jquery.js"></script>
+<script src="lib/vendor/d3/d3.js"></script>
+<script src="lib/vendor/d3/d3.layout.js"></script>
+<script src="lib/vendor/d3/d3.geom.js"></script>
+<script src="data/lib/graphrunner.js"></script>
+
 </body>
 </html>
