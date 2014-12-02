@@ -110,8 +110,94 @@ var GraphRunner = (function(jQuery, d3) {
       var className = d.name.replace(/\./g, '-dot-');
       var info = $("#domain-infos").find("." + className);
       var trackerInfo = d.trackerInfo;
-
       $("#domain-infos .info").hide();
+      //$("#domain-infos .info").hide();
+
+      // TODO Why do we clone the div instead of just clearing the one and adding to it?
+      // Oh, I see, we create a clone for each domain and then re-use it if it's already
+      // created. An optimization?
+      if (!info.length) {
+        info = $("#templates .info").clone();
+        info.addClass(className);
+        info.find("a.domain").text(d.name);
+
+
+        // var visited = $("div.visit").remove().append("<div>" + d.wasVisited + "</div>" );
+        var img = $('<img>');
+        var childService = getService(d.host);
+        var parentService = getService(domain);
+        if (trackerInfo && !(
+          childService && parentService && childService.name == parentService.name
+        ))
+          info.find("h2.domain").addClass("tracker");
+        var attribute = "src";
+        var faviconName = "favicon";
+        img.attr(attribute, "../images/chrollusion/favicon.png")
+           .addClass(faviconName + " " + harden(d.name));
+        if (!trackerInfo || !isBlocked(d.host, trackerInfo))
+          favicon.get(d.host, function(url) {
+            setFavicon(faviconName, d.name, attribute, url);
+          });
+        setDomainLink(info.find("a.domain"), d);
+        info.find("h2.domain").prepend(img);
+        img.error(function() { img.remove(); });
+        info.find("h2.domain").append("<div>Visited:" + d.wasVisited + "</div>");
+        $("#domain-infos").append(info);
+      }
+      else {
+        if (!isBlocked(d.host, trackerInfo))
+          info.find("h2.domain:first > a.tracker.blocked").removeClass("blocked");
+        else
+          info.find("h2.domain:first > a.tracker").addClass("blocked");
+      }
+
+      // List referrers, if any (sites that set cookies read by this site)
+      var referrers = info.find(".referrers");
+      var domains = findReferringDomains(d);
+      if (domains.length) {
+        var list = referrers.find("ul");
+        list.empty();
+        domains.forEach(function(d) {
+          var item = $('<li><a></a></li><br>');
+          item.append("<div>Visited:" + d.wasVisited + "</div>");
+          setDomainLink(item.find("a").text(d.name), d);
+          
+          list.append(item);
+        });
+        referrers.show();
+      } else {
+        referrers.hide();
+      }
+
+      // List referees, if any (sites that read cookies set by this site)
+      var referrees = info.find(".referrees");
+      domains = [];
+      vis.selectAll("line.from-" + d.index).each(function(e) {
+        domains.push(e.target);
+      });
+      if (domains.length) {
+        var list = referrees.find("ul");
+        list.empty();
+        domains.forEach(function(d) {
+          var item = $('<li><a></a></li>');
+          setDomainLink(item.find("a").text(d.name), d);
+          list.append(item);
+        });
+        referrees.show();
+      } else {
+        referrees.hide();
+      }
+
+      info.show();
+    }
+
+//Cherie's show domain info:
+    function myshowDomainInfo(d) {
+      var className = d.name.replace(/\./g, '-dot-');
+      var info = $("#Cherie-domain-infos").find("." + className);
+      var trackerInfo = d.trackerInfo;
+      $("#Cherie-domain-infos .info").hide();
+      //$("#domain-infos .info").hide();
 
       // TODO Why do we clone the div instead of just clearing the one and adding to it?
       // Oh, I see, we create a clone for each domain and then re-use it if it's already
@@ -138,7 +224,7 @@ var GraphRunner = (function(jQuery, d3) {
         setDomainLink(info.find("a.domain"), d);
         info.find("h2.domain").prepend(img);
         img.error(function() { img.remove(); });
-        $("#domain-infos").append(info);
+        $("#Cherie-domain-infos").append(info);
       }
       else {
         if (!isBlocked(d.host, trackerInfo))
@@ -184,6 +270,12 @@ var GraphRunner = (function(jQuery, d3) {
 
       info.show();
     }
+
+
+
+
+
+
 
     function createNodes(nodes, force) {
 
@@ -414,8 +506,11 @@ var GraphRunner = (function(jQuery, d3) {
           .size([SVG_WIDTH, SVG_HEIGHT])
           .start();
 
+      console.log(json.nodes);
       createLinks(json.links);
       createNodes(json.nodes, force);
+
+
 
       vis.style("opacity", 1e-6)
         .transition()
@@ -432,6 +527,8 @@ var GraphRunner = (function(jQuery, d3) {
             return "translate(" + d.x + "," + d.y + ")";
          });
       });
+      // console.log(json.nodes);
+      // myshowDomainInfo(json.nodes);
 
       return {
         vis: vis,
