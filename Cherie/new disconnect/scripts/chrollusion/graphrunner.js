@@ -141,7 +141,65 @@ var GraphRunner = (function(jQuery, d3) {
         setDomainLink(info.find("a.domain"), d);
         info.find("h2.domain").prepend(img);
         img.error(function() { img.remove(); });
-        info.find("h2.domain").append("<div>Visited:" + d.wasVisited + "</div>");
+
+        //Cherie: show Tracker Information flag:
+        var parentServiceFlag = ""
+        var theparentService = d.parentService
+        if (theparentService){
+          parentServiceFlag = "Available";
+          info.find("h2.domain").append("<div>Parent Service: " + parentServiceFlag+ "</div>");
+
+        }else{
+          parentServiceFlag = "Undefined";
+          info.find("h2.domain").append("<div>Parent Service: " + parentServiceFlag+ "</div>");
+        }
+        if (theparentService){
+          info.find("h2.domain").append("<div>Parent Service Name: " + theparentService.name+ "</div>");
+          info.find("h2.domain").append("<div>Parent Service Category: " + theparentService.category+ "</div>");
+          info.find("h2.domain").append("<div>Parent Service URL: " + theparentService.url+ "</div>")            
+        }      
+        
+        info.find("h2.domain").append("<br>");
+
+        var theTrackerInfo = d.trackerInfo;
+        console.log(theTrackerInfo);
+
+        var theTrackerInfoFlag = ""
+        if (theTrackerInfo){
+          theTrackerInfoFlag = "Available";
+          info.find("h2.domain").append("<div>Tracker Information: " + theTrackerInfoFlag+ "</div>");
+
+        }else{
+          theTrackerInfoFlag = "Undefined";
+          info.find("h2.domain").append("<div>Tracker Information: " + theTrackerInfoFlag+ "</div>");
+        }
+        
+        if (theTrackerInfo){
+          info.find("h2.domain").append("<div>Tracker Name:" + theTrackerInfo.name+ "</div>");
+          info.find("h2.domain").append("<div>Tracker Category:" + theTrackerInfo.category+ "</div>");
+          info.find("h2.domain").append("<div>Tracker URL:" + theTrackerInfo.url+ "</div>")          
+        }
+
+        info.find("h2.domain").append("<br>");
+
+
+        var visitflag = "";
+        if (d.wasVisited){
+          visitflag = "Yes";
+        }else{
+          visitflag = "No";
+        }
+        info.find("h2.domain").append("<div>Visited: " + visitflag+ "</div>");
+
+        var blockedflag = "";
+        if (isBlocked(d.host, trackerInfo)){
+          blockedflag = "Blocked";
+        }else{
+          blockedflag = "Unblocked"
+        }
+        info.find("h2.domain").append("<div>Status: " + blockedflag+ "</div>");
+
+
         $("#domain-infos").append(info);
       }
       else {

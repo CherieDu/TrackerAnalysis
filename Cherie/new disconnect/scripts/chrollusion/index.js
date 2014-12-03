@@ -78,7 +78,8 @@ function renderGraph() {
 
     $("#update .chrome").show();
     $("#logo").attr({
-      src: "../images/chrollusion/chrome.png", alt: "Collusion for Chrome"
+      src: "../images/chrollusion/redlogo.jpg", alt: "Collusion for Chrome", 
+      style: "height : 80; width: 200",
     });
   }
 
