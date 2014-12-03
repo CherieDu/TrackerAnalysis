@@ -143,15 +143,16 @@ var GraphRunner = (function(jQuery, d3) {
         img.error(function() { img.remove(); });
 
         //Cherie: show Tracker Information flag:
+        MoreInfo = info.find("h2.domain");
         var parentServiceFlag = ""
         var theparentService = d.parentService
         if (theparentService){
           parentServiceFlag = "Available";
-          info.find("h2.domain").append("<div>Parent Service: " + parentServiceFlag+ "</div>");
+          MoreInfo.append("<div>Parent Service: " + parentServiceFlag+ "</div>");
 
         }else{
           parentServiceFlag = "Undefined";
-          info.find("h2.domain").append("<div>Parent Service: " + parentServiceFlag+ "</div>");
+          MoreInfo.append("<div>Parent Service: " + parentServiceFlag+ "</div>");
         }
         if (theparentService){
           info.find("h2.domain").append("<div>Parent Service Name: " + theparentService.name+ "</div>");
@@ -192,6 +193,7 @@ var GraphRunner = (function(jQuery, d3) {
         info.find("h2.domain").append("<div>Visited: " + visitflag+ "</div>");
 
         var blockedflag = "";
+
         if (isBlocked(d.host, trackerInfo)){
           blockedflag = "Blocked";
         }else{
@@ -203,7 +205,7 @@ var GraphRunner = (function(jQuery, d3) {
         $("#domain-infos").append(info);
       }
       else {
-        if (!isBlocked(d.host, trackerInfo))
+        if (!isBlocked(d.host, d.trackerInfo))
           info.find("h2.domain:first > a.tracker.blocked").removeClass("blocked");
         else
           info.find("h2.domain:first > a.tracker").addClass("blocked");
@@ -212,12 +214,18 @@ var GraphRunner = (function(jQuery, d3) {
       // List referrers, if any (sites that set cookies read by this site)
       var referrers = info.find(".referrers");
       var domains = findReferringDomains(d);
+      console.log(domains);
       if (domains.length) {
         var list = referrers.find("ul");
         list.empty();
+        // var blockednum = 0;
+        // for (blockednum=0; domains.length; blockednum++){
+
+        // }
         domains.forEach(function(d) {
           var item = $('<li><a></a></li><br>');
-          item.append("<div>Visited:" + d.wasVisited + "</div>");
+          // item.append("<div>Visited:" + d.wasVisited + "</div>");
+
           setDomainLink(item.find("a").text(d.name), d);
           
           list.append(item);
@@ -249,85 +257,6 @@ var GraphRunner = (function(jQuery, d3) {
       info.show();
     }
 
-//Cherie's show domain info:
-    function myshowDomainInfo(d) {
-      var className = d.name.replace(/\./g, '-dot-');
-      var info = $("#Cherie-domain-infos").find("." + className);
-      var trackerInfo = d.trackerInfo;
-      $("#Cherie-domain-infos .info").hide();
-      //$("#domain-infos .info").hide();
-
-      // TODO Why do we clone the div instead of just clearing the one and adding to it?
-      // Oh, I see, we create a clone for each domain and then re-use it if it's already
-      // created. An optimization?
-      if (!info.length) {
-        info = $("#templates .info").clone();
-        info.addClass(className);
-        info.find("a.domain").text(d.name);
-        var img = $('<img>');
-        var childService = getService(d.host);
-        var parentService = getService(domain);
-        if (trackerInfo && !(
-          childService && parentService && childService.name == parentService.name
-        ))
-          info.find("h2.domain").addClass("tracker");
-        var attribute = "src";
-        var faviconName = "favicon";
-        img.attr(attribute, "../images/chrollusion/favicon.png")
-           .addClass(faviconName + " " + harden(d.name));
-        if (!trackerInfo || !isBlocked(d.host, trackerInfo))
-          favicon.get(d.host, function(url) {
-            setFavicon(faviconName, d.name, attribute, url);
-          });
-        setDomainLink(info.find("a.domain"), d);
-        info.find("h2.domain").prepend(img);
-        img.error(function() { img.remove(); });
-        $("#Cherie-domain-infos").append(info);
-      }
-      else {
-        if (!isBlocked(d.host, trackerInfo))
-          info.find("h2.domain:first > a.tracker.blocked").removeClass("blocked");
-        else
-          info.find("h2.domain:first > a.tracker").addClass("blocked");
-      }
-
-      // List referrers, if any (sites that set cookies read by this site)
-      var referrers = info.find(".referrers");
-      var domains = findReferringDomains(d);
-      if (domains.length) {
-        var list = referrers.find("ul");
-        list.empty();
-        domains.forEach(function(d) {
-          var item = $('<li><a></a></li>');
-          setDomainLink(item.find("a").text(d.name), d);
-          list.append(item);
-        });
-        referrers.show();
-      } else {
-        referrers.hide();
-      }
-
-      // List referees, if any (sites that read cookies set by this site)
-      var referrees = info.find(".referrees");
-      domains = [];
-      vis.selectAll("line.from-" + d.index).each(function(e) {
-        domains.push(e.target);
-      });
-      if (domains.length) {
-        var list = referrees.find("ul");
-        list.empty();
-        domains.forEach(function(d) {
-          var item = $('<li><a></a></li>');
-          setDomainLink(item.find("a").text(d.name), d);
-          list.append(item);
-        });
-        referrees.show();
-      } else {
-        referrees.hide();
-      }
-
-      info.show();
-    }
 
 
 
@@ -406,6 +335,8 @@ var GraphRunner = (function(jQuery, d3) {
 
         return connectedDomains;
       }
+
+
 
       var node = vis.select("g.nodes").selectAll("g.node")
           .data(nodes);
