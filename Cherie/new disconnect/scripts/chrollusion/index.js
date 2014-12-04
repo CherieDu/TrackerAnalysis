@@ -55,6 +55,7 @@ var sidebarCollapsed = parseInt(options.sidebarCollapsed, 10);
 var blacklist;
 var siteBlacklist;
 
+
 /* Paints the graph UI. */
 function renderGraph() {
   if (SAFARI) {
@@ -93,14 +94,14 @@ function renderGraph() {
 
   $("#domain-infos").hide();
   whitelist = deserialize(options.whitelist) || {};
-
+$("#show-tracking-list").html("Show tracker list");
   tabApi.query({currentWindow: true, active: true}, function(tabs) {
     var tab = tabs[0];
     domain = backgroundPage.GET(tab.url);
     tabId = tab.id;
     siteWhitelist = whitelist[domain] || (whitelist[domain] = {});
     var serviceWhitelist = (siteWhitelist.Disconnect || {}).services || {};
-
+  
     if (
       serviceWhitelist.Facebook && serviceWhitelist.Google &&
           serviceWhitelist.Twitter &&
@@ -158,6 +159,63 @@ function renderGraph() {
         $("#sidebar").show();
         $("#chart").removeClass("fullscreen");
       }
+
+    function isBlocked(host, trackerInfo) {
+      trackerInfo = trackerInfo || {};
+      var childService = getService(host);
+      var parentService = getService(domain);
+      var category = trackerInfo.category || null;
+      var categoryWhitelist = siteWhitelist[category] || {};
+      var name = trackerInfo.name || null;
+      return !(
+        childService && parentService && childService.name == parentService.name
+      ) && (
+        category != 'Content' && !categoryWhitelist.whitelisted &&
+            !(categoryWhitelist.services || {})[name] ||
+                (siteBlacklist[category] || {})[name]
+      );
+    }
+
+
+    //Cherie
+      $("#show-tracking-list").click(function() {
+        var d3trackerList = d3.selectAll("line.tracker")[0];
+        var n = d3trackerList.length;
+        console.log("d3trackerList");
+        console.log(d3trackerList);
+        console.log("n");
+        console.log(n); 
+        var onetracker = d3trackerList[0].__data__;       
+        console.log("onetracker");
+        console.log(onetracker); 
+        var trackerList = [];
+
+        var i = 0;
+        for ( i = 0; i < n; i = i + 1){
+            trackerList.push(d3trackerList[i].__data__);
+        }
+        console.log("trackerList");
+        console.log(trackerList); 
+        
+        var list = $("#Cherie-show-trackerlist");
+        if (list.hasClass("invisible")){
+            list.empty();
+            list.removeClass("invisible");
+
+        }else{
+            list.empty();
+
+            list.append("<h2>Tracker List: </h2>");
+
+            for ( i = 0; i < n; i = i + 1){
+              var item = $('<li><a></a></li>');
+              item.find("a").text(trackerList[i].name).attr("href", "http://" + trackerList[i].name);
+              list.append(item);
+            }          
+            list.addClass("invisible");
+        }
+        
+       });
 
       $("#unblock-tracking").click(function() {
         var trackingUnblocked = whitelistSite();

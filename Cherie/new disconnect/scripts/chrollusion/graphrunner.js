@@ -138,6 +138,8 @@ var GraphRunner = (function(jQuery, d3) {
           favicon.get(d.host, function(url) {
             setFavicon(faviconName, d.name, attribute, url);
           });
+        console.log("d:");
+        console.log(d);
         setDomainLink(info.find("a.domain"), d);
         info.find("h2.domain").prepend(img);
         img.error(function() { img.remove(); });
@@ -157,7 +159,7 @@ var GraphRunner = (function(jQuery, d3) {
         if (theparentService){
           info.find("h2.domain").append("<div>Parent Service Name: " + theparentService.name+ "</div>");
           info.find("h2.domain").append("<div>Parent Service Category: " + theparentService.category+ "</div>");
-          info.find("h2.domain").append("<div>Parent Service URL: " + theparentService.url+ "</div>")            
+          info.find("h2.domain").append("<div>Parent Service URL: <a href=\"" +theparentService.url +"\">" + theparentService.url+ "</a></div>")            
         }      
         
         info.find("h2.domain").append("<br>");
@@ -178,7 +180,7 @@ var GraphRunner = (function(jQuery, d3) {
         if (theTrackerInfo){
           info.find("h2.domain").append("<div>Tracker Name:" + theTrackerInfo.name+ "</div>");
           info.find("h2.domain").append("<div>Tracker Category:" + theTrackerInfo.category+ "</div>");
-          info.find("h2.domain").append("<div>Tracker URL:" + theTrackerInfo.url+ "</div>")          
+          info.find("h2.domain").append("<div>Tracker URL: <a href=\"" +theTrackerInfo.url +"\">" + theTrackerInfo.url+ "</a></div>")
         }
 
         info.find("h2.domain").append("<br>");
@@ -214,6 +216,7 @@ var GraphRunner = (function(jQuery, d3) {
       // List referrers, if any (sites that set cookies read by this site)
       var referrers = info.find(".referrers");
       var domains = findReferringDomains(d);
+      console.log("domains");
       console.log(domains);
       if (domains.length) {
         var list = referrers.find("ul");
@@ -494,6 +497,8 @@ var GraphRunner = (function(jQuery, d3) {
           .links(json.links)
           .size([SVG_WIDTH, SVG_HEIGHT])
           .start();
+
+      console.log("json.nodes");
 
       console.log(json.nodes);
       createLinks(json.links);

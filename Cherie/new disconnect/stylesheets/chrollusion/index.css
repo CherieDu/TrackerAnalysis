@@ -215,7 +215,7 @@ div.settings-menu > ul > li, div.settings-menu.collapsed {
 }
 
 div.settings-menu > ul > li.invisible:hover {
-  background: rgba(0, 0, 0, 0.75);
+  background: #428bca;
   color: white;
 }
 
