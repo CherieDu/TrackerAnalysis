@@ -179,6 +179,7 @@ $("#show-tracking-list").html("Show tracker list");
 
     //Cherie
       $("#show-tracking-list").click(function() {
+        $(this).text("Hide tracker list");
         var d3trackerList = d3.selectAll("line.tracker")[0];
         var n = d3trackerList.length;
         console.log("d3trackerList");
@@ -199,10 +200,11 @@ $("#show-tracking-list").html("Show tracker list");
         
         var list = $("#Cherie-show-trackerlist");
         if (list.hasClass("invisible")){
+            $(this).text("Show tracker list");
             list.empty();
             list.removeClass("invisible");
 
-        }else{
+        }else{ 
             list.empty();
 
             list.append("<h2>Tracker List: </h2>");
@@ -212,6 +214,7 @@ $("#show-tracking-list").html("Show tracker list");
               item.find("a").text(trackerList[i].name).attr("href", "http://" + trackerList[i].name);
               list.append(item);
             }          
+            list.append("<br>");
             list.addClass("invisible");
         }
         

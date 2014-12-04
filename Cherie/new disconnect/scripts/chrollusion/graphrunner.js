@@ -138,8 +138,6 @@ var GraphRunner = (function(jQuery, d3) {
           favicon.get(d.host, function(url) {
             setFavicon(faviconName, d.name, attribute, url);
           });
-        console.log("d:");
-        console.log(d);
         setDomainLink(info.find("a.domain"), d);
         info.find("h2.domain").prepend(img);
         img.error(function() { img.remove(); });

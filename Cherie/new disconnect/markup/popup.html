@@ -36,6 +36,12 @@
 <script src="../scripts/chrollusion/graphrunner.js"></script>
 <script src="../scripts/chrollusion/index.js"></script>
 <script src="../scripts/popup.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
 <div id="list">
   <table id="navbar">
     <tr>
@@ -228,6 +234,8 @@
   </table>
 </div>
 <div id="graph">
+
+
   <div class="notification" id="update" style="display: none">
     <div class="close"></div>
     &nbsp;<strong><span class="chrome">v2.0</span><span class="safari">v2.0</span></strong> • Click <strong>Hide inactive sites</strong> in the sidebar to view the graph for just the current site. • Click a blocked site in the graph to unblock the site.
@@ -240,11 +248,24 @@
   </div>
   <div id="page">
   <div id="sidebar" style="display: none;">
+
+
     <h1></h1>
     <img id="logo">
     <hr/>
-
+<!--     <p>I'm the expanded content.</p>
+    <div data-role="main" class="ui-content">
+    <div data-role="collapsible">
+      <h1>Click me - I'm collapsible!</h1>
+      <p>I'm the expanded content.</p>
+    </div>
+  </div> -->
     <div id="sidebar-content">
+
+
+
+
+
     <div class="live-data">
       <!-- <p>Browse the web normally. As you do, the graph in this popup and the counter in the toolbar will update. Each circle in the graph represents a site that’s been or would’ve been sent some of your personal info.</p>
       <p>Circles with a halo are sites you’ve visited. Circles without a halo are sites you haven’t.</p>
@@ -253,7 +274,12 @@
     </div> <!-- end of live-data -->
     <div id="tracker-list">
       <div id="Cherie-show-trackerlist"></div>
+      
     </div>
+
+
+
+
     <div id="domain-infos"></div> <!-- Templates are copied into here -->
     <div class="settings-menu">
       <ul>
@@ -268,8 +294,8 @@
   </div> <!-- End of #sidebar -->
   <div id="chart"></div><!-- The d3 layout graph will go inside this div -->
   <div class="settings-menu collapsed" id="show-sidebar">+</div>
-  <div class="settings-menu collapsed" id="show-list">Show list view</div>
-  </div>
+  <!-- <div class="settings-menu collapsed" id="show-list">Show list view</div>
+  </div> -->
   <div id="addon-installation-detected" style="display: none;">
     Collusion add-on detected! Reload this page to see your graph.
   </div>
