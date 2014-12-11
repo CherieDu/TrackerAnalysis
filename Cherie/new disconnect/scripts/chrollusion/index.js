@@ -98,7 +98,7 @@ $("#show-tracking-list").html("Show tracker list");
   tabApi.query({currentWindow: true, active: true}, function(tabs) {
     var tab = tabs[0];
     domain = backgroundPage.GET(tab.url);
-    tabId = tab.id;
+    tabId = tab.id; 
     siteWhitelist = whitelist[domain] || (whitelist[domain] = {});
     var serviceWhitelist = (siteWhitelist.Disconnect || {}).services || {};
   
@@ -185,7 +185,7 @@ $("#show-tracking-list").html("Show tracker list");
         console.log("d3trackerList");
         console.log(d3trackerList);
         console.log("n");
-        console.log(n); 
+        console.log(n);
         var onetracker = d3trackerList[0].__data__;       
         console.log("onetracker");
         console.log(onetracker); 
@@ -207,17 +207,62 @@ $("#show-tracking-list").html("Show tracker list");
         }else{ 
             list.empty();
 
-            list.append("<h2>Tracker List: </h2>");
+            list.append("<h3>Tracker List: </h3>");
 
             for ( i = 0; i < n; i = i + 1){
               var item = $('<li><a></a></li>');
               item.find("a").text(trackerList[i].name).attr("href", "http://" + trackerList[i].name);
+              
+              if(trackerList[i].trackerInfo != false){
+                var Tcategory = trackerList[i].trackerInfo.category;
+                if (Tcategory == "Content"){
+                  item.find("a").attr("style", "background-color:#4DB8FF");
+                }
+                else if (Tcategory == "Social"){
+                  item.find("a").attr("style", "background-color:#F3E7FF");
+                }  
+                else if (Tcategory == "Analytics"){
+                  item.find("a").attr("style", "background-color:#DFFFDF");
+                }   
+                else if (Tcategory == "Advertising"){
+                  item.find("a").attr("style", "background-color:#FFFFB2");
+                }  
+                else if (Tcategory == "Disconnect"){
+                  item.find("a").attr("style", "background-color:#E8A3FF");
+                }
+              }
+              //item.find("a").text(trackerList[i].name).attr("href", "http://" + trackerList[i].name);
               list.append(item);
             }          
             list.append("<br>");
+
+            list.append("<div></div>")
+            var categoryChart = list.find("div");
+
+            categoryChart.append("<h2>Category chart:</h2>");
+
+            var categoryChartTable = categoryChart.find("h2");
+            categoryChartTable.append("<li style=\"background-color:#FFFFB2\">Advertising</li>");
+            categoryChartTable.append("<li style=\"background-color:#F3E7FF\">Social</li>");
+            categoryChartTable.append("<li style=\"background-color:#DFFFDF\">Analytics</li>");
+            categoryChartTable.append("<li style=\"background-color:#4DB8FF\">Content</li>");
+            categoryChartTable.append("<li style=\"background-color:#E8A3FF\">Disconnect</li>");
+            categoryChartTable.append("<br>");
+            // categoryChartTable.last().attr("style", "background-color:#FFFFB2");
+            
+            // categoryChartTable.append("<li>Social:</li>");
+            // categoryChartTable.find("li").attr("style", "background-color:#F3E7FF");
+
+            // categoryChartTable.append("<li>Analytics:</li>");
+            // categoryChartTable.find("li").attr("style", "background-color:#DFFFDF");
+
+            // categoryChartTable.append("<li>Content:</li>");
+            // categoryChartTable.find("li").attr("style", "background-color:#4DB8FF");
+
+            // categoryChart.find("p").attr("style", "background-color:blue");
             list.addClass("invisible");
         }
-        
+          //
        });
 
       $("#unblock-tracking").click(function() {
@@ -296,3 +341,7 @@ $("#show-tracking-list").html("Show tracker list");
     }
   }
 }
+
+
+
+

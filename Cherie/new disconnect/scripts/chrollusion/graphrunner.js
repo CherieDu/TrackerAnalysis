@@ -134,6 +134,7 @@ var GraphRunner = (function(jQuery, d3) {
         var faviconName = "favicon";
         img.attr(attribute, "../images/chrollusion/favicon.png")
            .addClass(faviconName + " " + harden(d.name));
+
         if (!trackerInfo || !isBlocked(d.host, trackerInfo))
           favicon.get(d.host, function(url) {
             setFavicon(faviconName, d.name, attribute, url);
@@ -337,6 +338,19 @@ var GraphRunner = (function(jQuery, d3) {
         return connectedDomains;
       }
 
+      // function getConnectedDomains(d) {
+      //   var connectedDomains = [d.name];
+      //   findReferringDomains(d).forEach( function(e) {
+      //     connectedDomains.push(e.name);
+      //   });
+      //   vis.selectAll("line.from-" + d.index).each(function(e) {
+      //     connectedDomains.push(e.target.name);
+      //   });
+
+      //   return connectedDomains;
+      // }
+
+
 
 
       var node = vis.select("g.nodes").selectAll("g.node")
@@ -348,7 +362,7 @@ var GraphRunner = (function(jQuery, d3) {
 
       // For each node, create svg group <g> to hold circle, image, and title
       var gs = node.enter().append("svg:g")
-          .attr("class", "node")
+          .attr("class", "node")//.css("background-color","yellow")
           .attr("transform", function(d) {
             // <g> doesn't take x or y attributes but it can be positioned with a transformation
             return "translate(" + d.x + "," + d.y + ")";
