@@ -257,40 +257,7 @@ $("#show-data-table").html("What data do they collect");
        });
 
 
-//       $("#show-data-table").click(function() {
-//         $(this).append(
 
-// // <div class="modal" id="thismodal">
-// //     <div class="modal-dialog modal-dialog-closed modal-fill">
-// //         <div class="modal-content">
-// //             <div class="modal-header">
-// //                 <span class="modal-title">This is my awesome modal</span>
-// //                 <button type="button" class="close" data-dismiss="modal" data-remove="#thismodal">
-// //                     <span aria-hidden="true">&times;</span>
-// //                 </button>
-// //             </div>
-// //             <div class="modal-body">
-// //                 <div class"par">
-// //                   This is my awesome modal; it was inspired by the one in <a href="http://getbootstrap.com">Twitter Bootstrap</a>, but written completely from scratch and enhanced to be responsive and nice to look at.
-// //                 </div>
-// //                 <p class="par">
-// //                   <b>You have two options:</b> To open it up as a simple modal, small and limited to the top of the... you have to do is add the class <span class="code">modal-fill</span> to it.
-// //                 </p>
-// //                 <div class="par">
-// //                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit 
-// //                 </div>
-// //             </div>
-// //             <div class="modal-footer">
-                
-// //             </div>
-// //         </div>
-// //     </div>
-// // </div>
-
-// // );
-
-
-//       }
 
 
       $("#unblock-tracking").click(function() {

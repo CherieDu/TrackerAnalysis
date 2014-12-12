@@ -338,17 +338,6 @@ var GraphRunner = (function(jQuery, d3) {
         return connectedDomains;
       }
 
-      // function getConnectedDomains(d) {
-      //   var connectedDomains = [d.name];
-      //   findReferringDomains(d).forEach( function(e) {
-      //     connectedDomains.push(e.name);
-      //   });
-      //   vis.selectAll("line.from-" + d.index).each(function(e) {
-      //     connectedDomains.push(e.target.name);
-      //   });
-
-      //   return connectedDomains;
-      // }
 
 
 
