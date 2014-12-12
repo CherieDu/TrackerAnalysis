@@ -24,6 +24,8 @@
 <link rel="stylesheet" href="../stylesheets/chrollusion/index.css">
 <link rel="stylesheet" href="../stylesheets/legacy.css">
 <link rel="stylesheet" href="../stylesheets/popup.css">
+<link rel="stylesheet" href="../stylesheets/chrollusion/CDdialog.css">
+
 <script src="../scripts/vendor/port/port.js"></script>
 <script src="../scripts/vendor/jquery/jquery.js"></script>
 <script src="../scripts/vendor/tipped/tipped.js"></script>
@@ -39,13 +41,16 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+ -->
 <script src="../scripts/vendor/jquery/jquery.collapsible.js"></script>
 <script src="../scripts/vendor/bootstrap-3.2.0/dist/js/bootstrap.js"></script>
 <script src="../scripts/vendor/bootstrap-3.2.0/dist/js/bootstrap.min.js"></script>
 <script src="../scripts/vendor/bootstrap-3.2.0/js/popover.js"></script>
 <script src="../scripts/vendor/bootstrap-3.2.0/js/modal.js"></script>
+<script src="../scripts/CheriePopupDataTable.js"></script>
 
 <!-- <link href="../scripts/vendor/bootstrap-3.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="../scripts/vendor/bootstrap-3.2.0/dist/css/bootstrap.css" rel="stylesheet">
@@ -295,10 +300,15 @@
       <ul>
       <li id="show-tracking-list"></li>
         <li id="unblock-tracking"></li>
-        <li id="show-data-table"></li>
+<!--         <li id="show-data-table"></li>
+ -->
+    <li class="settings-menu" id="show-data-table"  data-toggle="#thismodal">
+</li>
 
-<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
 
+
+<!-- <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+ -->
 
 <!--         <li id="disable-wifi"></li>
  -->        <li id="hide-sidebar">Hide sidebar</li>
@@ -307,10 +317,52 @@
     </div> <!-- end of settingsmenu -->
     </div> <!-- End of #sidebar-content -->
   </div> <!-- End of #sidebar -->
-  <div id="chart"></div><!-- The d3 layout graph will go inside this div -->
+  <div id="chart">
+
+
+
+
+<div class="modal " id="thismodal" >
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">What data do they collect</span>
+                <button type="button" class="close" data-dismiss="modal" data-remove="#thismodal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class"par">
+                  This is my awesome modal; it was inspired by the one in <a href="http://getbootstrap.com">Twitter Bootstrap</a>, but written completely from scratch and enhanced to be responsive and nice to look at.
+                </div>
+                <p class="par">
+                  <b>You have two options:</b> To open it up as a simple modal, small and limited to the top of the... you have to do is add the class <span class="code">modal-fill</span> to it.
+                </p>
+                <div class="par">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit 
+                </div>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+  </div><!-- The d3 layout graph will go inside this div -->
   <div class="settings-menu collapsed" id="show-sidebar">+</div>
 <!--   <div class="settings-menu collapsed" id="show-list">Show list view</div>
  -->  
+
+
+
+
+
+
+
  </div>
   <div id="addon-installation-detected" style="display: none;">
     Collusion add-on detected! Reload this page to see your graph.
