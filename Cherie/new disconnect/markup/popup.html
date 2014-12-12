@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="../stylesheets/legacy.css">
 <link rel="stylesheet" href="../stylesheets/popup.css">
 <link rel="stylesheet" href="../stylesheets/chrollusion/CDdialog.css">
+<link rel="stylesheet" href="../stylesheets/chrollusion/CDDataTable.css">
 
 <script src="../scripts/vendor/port/port.js"></script>
 <script src="../scripts/vendor/jquery/jquery.js"></script>
@@ -51,6 +52,11 @@
 <script src="../scripts/vendor/bootstrap-3.2.0/js/popover.js"></script>
 <script src="../scripts/vendor/bootstrap-3.2.0/js/modal.js"></script>
 <script src="../scripts/CheriePopupDataTable.js"></script>
+<script src="../scripts/CDDataTable.js"></script>
+<script src="../scripts/vendor/tablesorter/jquery.tablesorter.min.js"></script>
+<script src="../scripts/vendor/tablesorter/jquery.tablesorter.js"></script>
+
+<script type="text/javascript" src="../scripts/vendor/tablesorter/jquery.tablesorter.widgets.js"></script>
 
 <!-- <link href="../scripts/vendor/bootstrap-3.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="../scripts/vendor/bootstrap-3.2.0/dist/css/bootstrap.css" rel="stylesheet">
@@ -332,15 +338,96 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class"par">
-                  This is my awesome modal; it was inspired by the one in <a href="http://getbootstrap.com">Twitter Bootstrap</a>, but written completely from scratch and enhanced to be responsive and nice to look at.
-                </div>
-                <p class="par">
-                  <b>You have two options:</b> To open it up as a simple modal, small and limited to the top of the... you have to do is add the class <span class="code">modal-fill</span> to it.
-                </p>
-                <div class="par">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit 
-                </div>
+<!--               <div class"par">
+ -->
+
+
+
+ <div id="wrapper">
+  
+  <table id="keywords" cellspacing="0" cellpadding="0" border="1" >
+    <thead>
+      <tr>
+        <th><span>Trackers</span></th>
+        <th><span>Data Collected</span></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="lalign">ChartBeat</td>
+        <td>Browser Information, Demographic Data, IP Address (Shares data with third parties)</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">Krux Digital</td>
+        <td>Browser Information, Date/Time, Demographic Data, HW/SW Type, Internet Service Provider, Page Views, IP Address (Undisclosed)</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">InsightExpress</td>
+        <td>Browser Information, Date/Time, Page Views, Serving Domains, IP Address (Doesn’t share)</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">Facebook Connect</td>
+        <td>Browser Information, Date/Time, Demographic Data, HW/SW Type, Page Views, IP Address (Shares)</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">Millward Brown </td>
+        <td>Undisclosed (Undisclosed)</td>
+
+      </tr>
+
+      <tr>
+        <td class="lalign">DoubleClick </td>
+        <td>Ad Views, Analytics, Browser Information, Cookie Data, Date/Time, Demographic Data, HW/SW Type, Interaction Data , Page Views , Serving Domains, IP Address, Search History, Location Based Data, Device ID, Phone Number (Shares)</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">ClickTale </td>
+        <td>Browser Information, HW/SW Type, Interaction Data, Page Views, Clickstream Data (Shares)</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">OutBrain </td>
+        <td>Browser Information, HW/SW Type, Demographic Data, HW/SW Type, Interaction Data , Page Views , Serving Domains, IP Address, Device ID (Shares)</td>
+
+      </tr>
+
+      <tr>
+        <td class="lalign">Visual Revenue </td>
+        <td>Date/TIme, Page Views (Undisclosed)</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">Full Circle Studies </td>
+        <td>Undisclosed (Undisclosed)</td>
+
+      </tr>      
+      <tr>
+        <td class="lalign">Optimizely </td>
+        <td>Analytics, Browser Information, Interaction Data, Page Views, IP Address, Clickstream Data (Shares)</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">Nielson </td>
+        <td>Ad Views, Analytics, Browser Information, Date/Time, Demographic Data, HW/SW Type, Page Views, IP Address (Shares)</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">Nativo </td>
+        <td>Ad Views, Analytics, Browser Information, Date/Time, HW/SW Type, Interaction Data, Page Views, Serving Domains, IP Address</td>
+
+      </tr>
+
+
+    </tbody>
+  </table>
+ </div> 
+
+
             </div>
             <div class="modal-footer">
                 
