@@ -1,0 +1,520 @@
+<!--
+  The markup for a popup that displays and drives the blocking of requests.
+
+  Copyright 2010-2014 Disconnect, Inc.
+
+  This program is free software: you can redistribute it and/or modify it under
+  the terms of the GNU General Public License as published by the Free Software
+  Foundation, either version 3 of the License, or (at your option) any later
+  version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License along with
+  this program. If not, see <http://www.gnu.org/licenses/>.
+
+  Authors (one per line):
+
+    Brian Kennish <byoogle@gmail.com>
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../stylesheets/vendor/tipped/tipped.css">
+<link rel="stylesheet" href="../stylesheets/chrollusion/index.css">
+<link rel="stylesheet" href="../stylesheets/legacy.css">
+<link rel="stylesheet" href="../stylesheets/popup.css">
+<link rel="stylesheet" href="../stylesheets/chrollusion/CDdialog.css">
+<link rel="stylesheet" href="../stylesheets/chrollusion/CDDataTable.css">
+
+<script src="../scripts/vendor/port/port.js"></script>
+<script src="../scripts/vendor/jquery/jquery.js"></script>
+<script src="../scripts/vendor/tipped/tipped.js"></script>
+<script src="../scripts/vendor/d3/d3.js"></script>
+<script src="../scripts/vendor/d3/d3.layout.js"></script>
+<script src="../scripts/vendor/d3/d3.geom.js"></script>
+<script src="../scripts/vendor/favicon/favicon.js"></script>
+<script src="../scripts/chrollusion/index-content-script.js"></script>
+<script src="../scripts/chrollusion/collusion-addon.js"></script>
+<script src="../scripts/chrollusion/graphrunner.js"></script>
+<script src="../scripts/chrollusion/index.js"></script>
+<script src="../scripts/popup.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<!-- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+ -->
+<script src="../scripts/vendor/jquery/jquery.collapsible.js"></script>
+<script src="../scripts/vendor/bootstrap-3.2.0/dist/js/bootstrap.js"></script>
+<script src="../scripts/vendor/bootstrap-3.2.0/dist/js/bootstrap.min.js"></script>
+<script src="../scripts/vendor/bootstrap-3.2.0/js/popover.js"></script>
+<script src="../scripts/vendor/bootstrap-3.2.0/js/modal.js"></script>
+<script src="../scripts/CheriePopupDataTable.js"></script>
+<script src="../scripts/CDDataTable.js"></script>
+<script src="../scripts/vendor/tablesorter/jquery.tablesorter.min.js"></script>
+<script src="../scripts/vendor/tablesorter/jquery.tablesorter.js"></script>
+
+<script type="text/javascript" src="../scripts/vendor/tablesorter/jquery.tablesorter.widgets.js"></script>
+
+<!-- <link href="../scripts/vendor/bootstrap-3.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../scripts/vendor/bootstrap-3.2.0/dist/css/bootstrap.css" rel="stylesheet">
+ -->
+<div id="list">
+  <table id="navbar">
+    <tr>
+      <td class="badge">
+        <a
+          title="Visit Disconnect"
+          target="_blank"
+          href="https://disconnect.me/"
+        ><img src="../images/chrollusion/greenlogo.jpg" style="height:40; widgh: 400" alt="Disconnect"></a>
+      </td>
+      <td class="text">
+        <a
+          title="Get help"
+          target="_blank"
+          href="https://disconnect.me/disconnect/help"
+        >Help</a><span title="Share Disconnect">Share</span><a
+          title="Pay what you want"
+          target="_blank"
+          href="https://disconnect.me/pwyw"
+        >$</a>
+      </td>
+    </tr>
+  </table>
+  <table id="shortcuts">
+    <tr>
+      <td>
+        <table class="shortcut">
+          <tr>
+            <td class="badge"><img></td>
+            <td class="text"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tbody id="categories">
+      <tr class="category">
+        <td class="badge"><img></td>
+        <td class="text">
+          <table>
+            <tr>
+              <td class="name"></td>
+            </tr>
+            <tr>
+              <td class="count"></td>
+            </tr>
+          </table>
+        </td>
+        <td class="action"><img src="../images/expand/1.png"></td>
+      </tr>
+      <tr class="border">
+        <td colspan="3"></td>
+      </tr>
+      <tr class="services">
+        <td colspan="3">
+          <div>
+            <table>
+              <tbody>
+                <tr class="service">
+                  <td class="control"><input type="checkbox"></td>
+                  <td class="link">
+                    <a title="Visit " target="_blank"></a>
+                  </td>
+                  <td class="text"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="options">
+    <tr>
+      <td class="whitelisting badge"><img src="../images/list/1.png"></td>
+      <td class="whitelisting text"></td>
+      <td class="visualization badge"><img></td>
+      <td class="visualization text">Visualize page</td>
+    </tr>
+    <tr>
+      <td class="indicator"><input type="checkbox"></td>
+      <td class="indicator">Show counter</td>
+      <td class="cap"><input type="checkbox"></td>
+      <td class="cap">Cap counter</td>
+    </tr>
+  </table>
+  <table id="dashboard">
+    <tr>
+      <td>
+        <table>
+          <tr>
+            <td class="label">
+              Time
+              <br>
+              saved
+            </td>
+            <td class="label">Bandwidth saved</td>
+            <td class="label">Requests secured</td>
+          </tr>
+          <tr>
+            <td colspan="3" id="data"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table id="support">
+    <tr>
+      <td>
+        <a href="https://www.disconnect.me/support">Support Disconnect</a>
+      </td>
+    </tr>
+  </table>
+  <table class="sharing disconnect">
+    <tr>
+      <td class="text"></td>
+      <td>
+        <a
+          title="Share Disconnect"
+          target="_blank"
+          href="https://disconnect.me/"
+        ><img src="../images/facebook.png" alt="Facebook"></a>
+      </td>
+      <td>
+        <a
+          title="Tweet about Disconnect"
+          target="_blank"
+          href="https://disconnect.me/"
+        ><img src="../images/twitter.png" alt="Twitter"></a>
+      </td>
+    </tr>
+  </table>
+  <table class="sharing speed">
+    <tr>
+      <td class="text"></td>
+      <td>
+        <a
+          title="Share speed"
+          target="_blank"
+          href="https://disconnect.me/"
+        ><img src="../images/facebook.png" alt="Facebook"></a>
+      </td>
+      <td>
+        <a
+          title="Tweet about speed"
+          target="_blank"
+          href="https://disconnect.me/"
+        ><img src="../images/twitter.png" alt="Twitter"></a>
+      </td>
+    </tr>
+  </table>
+  <table class="sharing bandwidth">
+    <tr>
+      <td class="text"></td>
+      <td>
+        <a
+          title="Share bandwidth"
+          target="_blank"
+          href="https://disconnect.me/"
+        ><img src="../images/facebook.png" alt="Facebook"></a>
+      </td>
+      <td>
+        <a
+          title="Tweet about bandwidth"
+          target="_blank"
+          href="https://disconnect.me/"
+        ><img src="../images/twitter.png" alt="Twitter"></a>
+      </td>
+    </tr>
+  </table>
+  <table class="sharing security">
+    <tr>
+      <td class="text"></td>
+      <td>
+        <a
+          title="Share security"
+          target="_blank"
+          href="https://disconnect.me/"
+        ><img src="../images/facebook.png" alt="Facebook"></a>
+      </td>
+      <td>
+        <a
+          title="Tweet about security"
+          target="_blank"
+          href="https://disconnect.me/"
+        ><img src="../images/twitter.png" alt="Twitter"></a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="graph">
+
+
+  <div class="notification" id="update" style="display: none">
+    <div class="close"></div>
+    &nbsp;<strong><span class="chrome">v2.0</span><span class="safari">v2.0</span></strong> • Click <strong>Hide inactive sites</strong> in the sidebar to view the graph for just the current site. • Click a blocked site in the graph to unblock the site.
+    <div class="share" id="js-share-fb" style="display: none"></div>
+    <div class="share" id="js-share-tweet" style="display: none"></div>
+  </div>
+  <div class="notification" id="recommends" style="display: none">
+    <div class="close"></div>
+    <span id='recommender-message'></span>
+  </div>
+  <div id="page">
+  <div id="sidebar" style="display: none;">
+
+
+    <h1></h1>
+    <img id="logo">
+    <hr/>
+
+
+    <div id="sidebar-content">
+
+
+
+
+
+    <div class="live-data">
+
+    </div> <!-- end of live-data -->
+    <div id="tracker-list">
+      <div id="Cherie-show-trackerlist"></div>
+      
+    </div>
+
+
+
+
+    <div id="domain-infos"></div> <!-- Templates are copied into here -->
+    <div class="settings-menu">
+      <ul>
+      <li id="show-tracking-list"></li>
+        <li id="unblock-tracking"></li>
+
+    <li class="settings-menu" id="show-data-table"  data-toggle="#thismodal">
+</li>
+
+
+
+        <li id="hide-sidebar">Hide sidebar</li>
+  </ul>
+    </div> <!-- end of settingsmenu -->
+    </div> <!-- End of #sidebar-content -->
+  </div> <!-- End of #sidebar -->
+  <div id="chart">
+
+
+
+
+<div class="modal " id="thismodal" >
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">What data do they collect (www.cnn.com)</span>
+                <button type="button" class="close" data-dismiss="modal" data-remove="#thismodal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+<!--               <div class"par">
+ -->
+
+
+
+ <div id="wrapper">
+  
+  <table id="keywords" cellspacing="0" cellpadding="0" border="1" >
+    <thead>
+      <tr>
+        <th><span>Tracker</span></th>
+        <th><span>Data Collected</span></th>
+        <th><span>Data Sharing</span></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="lalign">ChartBeat</td>
+        <td>Browser Information, Demographic Data, IP Address (Shares data with third parties)</td>
+        <td>Yes</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">Krux Digital</td>
+        <td>Browser Information, Date/Time, Demographic Data, HW/SW Type, Internet Service Provider, Page Views, IP Address (Undisclosed)</td>
+        <td>Yes</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">InsightExpress</td>
+        <td>Browser Information, Date/Time, Page Views, Serving Domains, IP Address (Doesn’t share)</td>
+        <td>Yes</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">Facebook Connect</td>
+        <td>Browser Information, Date/Time, Demographic Data, HW/SW Type, Page Views, IP Address (Shares)</td>
+        <td>Yes</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">Millward Brown </td>
+        <td>Undisclosed (Undisclosed)</td>
+        <td>No</td>
+
+      </tr>
+
+      <tr>
+        <td class="lalign">DoubleClick </td>
+        <td>Ad Views, Analytics, Browser Information, Cookie Data, Date/Time, Demographic Data, HW/SW Type, Interaction Data , Page Views , Serving Domains, IP Address, Search History, Location Based Data, Device ID, Phone Number (Shares)</td>
+        <td>Yes</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">ClickTale </td>
+        <td>Browser Information, HW/SW Type, Interaction Data, Page Views, Clickstream Data (Shares)</td>
+        <td>Yes</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">OutBrain </td>
+        <td>Browser Information, HW/SW Type, Demographic Data, HW/SW Type, Interaction Data , Page Views , Serving Domains, IP Address, Device ID (Shares)</td>
+        <td>Yes</td>
+
+      </tr>
+
+      <tr>
+        <td class="lalign">Visual Revenue </td>
+        <td>Date/TIme, Page Views (Undisclosed)</td>
+        <td>Yes</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">Full Circle Studies </td>
+        <td>Undisclosed (Undisclosed)</td>
+        <td>No</td>
+
+      </tr>      
+      <tr>
+        <td class="lalign">Optimizely </td>
+        <td>Analytics, Browser Information, Interaction Data, Page Views, IP Address, Clickstream Data (Shares)</td>
+        <td>Yes</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">Nielson </td>
+        <td>Ad Views, Analytics, Browser Information, Date/Time, Demographic Data, HW/SW Type, Page Views, IP Address (Shares)</td>
+        <td>Yes</td>
+
+      </tr>
+      <tr>
+        <td class="lalign">Nativo </td>
+        <td>Ad Views, Analytics, Browser Information, Date/Time, HW/SW Type, Interaction Data, Page Views, Serving Domains, IP Address</td>
+        <td>Yes</td>
+
+      </tr>
+
+
+    </tbody>
+  </table>
+ </div> 
+
+
+            </div>
+<!--             <div class="modal-footer">
+                
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+
+
+  </div><!-- The d3 layout graph will go inside this div -->
+  <div class="settings-menu collapsed" id="show-sidebar">+</div>
+<!--   <div class="settings-menu collapsed" id="show-list">Show list view</div>
+ -->  
+
+
+
+
+
+
+
+ </div>
+  <div id="addon-installation-detected" style="display: none;">
+    Collusion add-on detected! Reload this page to see your graph.
+  </div>
+  <div id="templates">
+
+    <div class="info" style="display: none;">
+
+      <h2 class="domain"><a class="domain"></a></h2>
+
+      <div class="referrees">
+        <p>When you visit this site, the following sites are informed:</p>
+        <ul></ul>
+      </div>
+      <div class="referrers">
+        <p>This site is informed when you visit the following sites:</p>
+        <ul></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start Social Sharing Stuff -->
+  <div id="social_share">
+    <!-- Start Twitter Stuff-->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://blog.disconnect.me/collusion-for-safari">Tweet</a>
+    <!-- End Twitter Stuff-->
+
+    <!-- Start Facebook Stuff-->
+    <a name="fb_share" share_url="https://blog.disconnect.me/collusion-for-safari"></a>
+    <!-- End Facebook Stuff-->
+  </div>
+  <!-- End Social Sharing Stuff -->
+</div>
+<div id="legacy">
+  <table class="services">
+    <tr>
+      <td><img></td>
+      <td></td>
+    </tr>
+  </table>
+  <table id="minioptions">
+    <tr class="search">
+      <td><input type="checkbox"></td>
+      <td>Anonymize search</td>
+    </tr>
+    <tr class="wifi">
+      <td><input type="checkbox"></td>
+      <td>Secure Wi-Fi</td>
+    </tr>
+  </table>
+  <a
+    title="Get help"
+    target="_blank"
+    href="https://disconnect.me/help"
+  >Help</a>
+  |
+  <a
+    title="Give props"
+    target="_blank"
+    href="https://chrome.google.com/webstore/detail/jeoacafpbcihiomhlakheieifhpjdfeo/reviews"
+  >Props</a>
+  <span id="upgrade">
+    |
+    <a
+      title="Upgrade to D2"
+      target="_blank"
+      href="https://disconnect.me/d2/upgrade"
+    >Upgrade</a>
+  </span>
+</div>

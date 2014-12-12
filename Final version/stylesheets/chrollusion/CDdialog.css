@@ -1,0 +1,118 @@
+* {
+    font-family: "Helvetica", sans-serif;
+}
+
+.modal {
+/*    background-color: rgba(0, 0, 0, 0.2);
+*/    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    display: none;
+    overflow: hidden;
+}
+
+.modal-dialog {
+    position: relative;
+    min-height: 440px;
+    min-width: 400px;
+    max-width: 700px;
+    font-size: 14px;
+    width: 90%;
+    background-color: #fff;
+    margin: 40px auto;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 15px 0 20px rgba(0, 0, 0, 0.16),
+        -15px 0 20px rgba(0, 0, 0, 0.16),
+        0 15px 20px rgba(0, 0, 0, 0.16),
+        0 -15px 20px rgba(0, 0, 0, 0.16);
+    transition: 0.3s;
+}
+
+.modal-dialog-closed {
+    margin-top: -110%;
+}
+
+.modal-fill {
+    height: calc(100% - 80px);
+}
+
+.modal-content > .modal-header {
+    height: 20px;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.modal-content > .modal-header > button.close {
+    float: right;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+        -ms-appearance: none;
+            appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 0 #fff;
+}
+
+.modal-content > .modal-header > button.close:hover {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content > .modal-header > .modal-title {
+    font-size: 18px;
+}
+
+.modal-content > .modal-body {
+    position: absolute;
+    top: 51px; bottom: 60px;
+    display: block;
+    box-sizing: border-box;
+    padding: 10px;
+    min-height: 360px;
+    overflow-y: auto;
+}
+
+.modal-content > .modal-footer {
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+    top: auto;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 60px;
+    padding: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.button {
+    padding: 10px;
+    outline: none;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #555;
+}
+
+.button:active {
+    background-color: #111;
+}
+
+.code {
+    background-color: #eaeaea;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #295753;
+}
