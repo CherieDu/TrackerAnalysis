@@ -42,6 +42,14 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script src="../scripts/vendor/jquery/jquery.collapsible.js"></script>
+<script src="../scripts/vendor/bootstrap-3.2.0/dist/js/bootstrap.js"></script>
+<script src="../scripts/vendor/bootstrap-3.2.0/dist/js/bootstrap.min.js"></script>
+<script src="../scripts/vendor/bootstrap-3.2.0/js/popover.js"></script>
+<script src="../scripts/vendor/bootstrap-3.2.0/js/modal.js"></script>
+
+<!-- <link href="../scripts/vendor/bootstrap-3.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../scripts/vendor/bootstrap-3.2.0/dist/css/bootstrap.css" rel="stylesheet">
+ -->
 <div id="list">
   <table id="navbar">
     <tr>
@@ -287,6 +295,11 @@
       <ul>
       <li id="show-tracking-list"></li>
         <li id="unblock-tracking"></li>
+        <li id="show-data-table"></li>
+
+<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+
+
 <!--         <li id="disable-wifi"></li>
  -->        <li id="hide-sidebar">Hide sidebar</li>
 <!--         <li class="invisible" id="show-instructions">Show instructions</li>
@@ -296,8 +309,9 @@
   </div> <!-- End of #sidebar -->
   <div id="chart"></div><!-- The d3 layout graph will go inside this div -->
   <div class="settings-menu collapsed" id="show-sidebar">+</div>
-  <div class="settings-menu collapsed" id="show-list">Show list view</div>
-  </div>
+<!--   <div class="settings-menu collapsed" id="show-list">Show list view</div>
+ -->  
+ </div>
   <div id="addon-installation-detected" style="display: none;">
     Collusion add-on detected! Reload this page to see your graph.
   </div>

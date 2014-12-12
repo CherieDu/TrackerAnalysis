@@ -95,6 +95,8 @@ function renderGraph() {
   $("#domain-infos").hide();
   whitelist = deserialize(options.whitelist) || {};
 $("#show-tracking-list").html("Show tracker list");
+$("#show-data-table").html("What data do they collect");
+
   tabApi.query({currentWindow: true, active: true}, function(tabs) {
     var tab = tabs[0];
     domain = backgroundPage.GET(tab.url);
@@ -246,7 +248,7 @@ $("#show-tracking-list").html("Show tracker list");
             categoryChartTable.append("<li style=\"background-color:#F3E7FF\">Social</li>");
             categoryChartTable.append("<li style=\"background-color:#DFFFDF\">Analytics</li>");
             categoryChartTable.append("<li style=\"background-color:#4DB8FF\">Content</li>");
-            categoryChartTable.append("<li style=\"background-color:#E8A3FF\">Disconnect</li>");
+            categoryChartTable.append("<li style=\"background-color:#E8A3FF\">Popular</li>");
             categoryChartTable.append("<br>");
             // categoryChartTable.last().attr("style", "background-color:#FFFFB2");
             

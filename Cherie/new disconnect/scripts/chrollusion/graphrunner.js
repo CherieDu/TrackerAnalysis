@@ -145,44 +145,44 @@ var GraphRunner = (function(jQuery, d3) {
 
         //Cherie: show Tracker Information flag:
         MoreInfo = info.find("h2.domain");
-        var parentServiceFlag = ""
-        var theparentService = d.parentService
-        if (theparentService){
-          parentServiceFlag = "Available";
-          MoreInfo.append("<div>Parent Service: " + parentServiceFlag+ "</div>");
+        // var parentServiceFlag = ""
+        // var theparentService = d.parentService
+        // if (theparentService){
+        //   parentServiceFlag = "Available";
+        //   MoreInfo.append("<div>Parent Service: " + parentServiceFlag+ "</div>");
 
-        }else{
-          parentServiceFlag = "Undefined";
-          MoreInfo.append("<div>Parent Service: " + parentServiceFlag+ "</div>");
-        }
-        if (theparentService){
-          info.find("h2.domain").append("<div>Parent Service Name: " + theparentService.name+ "</div>");
-          info.find("h2.domain").append("<div>Parent Service Category: " + theparentService.category+ "</div>");
-          info.find("h2.domain").append("<div>Parent Service URL: <a href=\"" +theparentService.url +"\">" + theparentService.url+ "</a></div>")            
-        }      
+        // }else{
+        //   parentServiceFlag = "Undefined";
+        //   MoreInfo.append("<div>Parent Service: " + parentServiceFlag+ "</div>");
+        // }
+        // if (theparentService){
+        //   info.find("h2.domain").append("<div>Parent Service Name: " + theparentService.name+ "</div>");
+        //   info.find("h2.domain").append("<div>Parent Service Category: " + theparentService.category+ "</div>");
+        //   info.find("h2.domain").append("<div>Parent Service URL: <a href=\"" +theparentService.url +"\">" + theparentService.url+ "</a></div>")            
+        // }      
         
-        info.find("h2.domain").append("<br>");
+        //info.find("h2.domain").append("<br>");
 
         var theTrackerInfo = d.trackerInfo;
         console.log(theTrackerInfo);
 
         var theTrackerInfoFlag = ""
         if (theTrackerInfo){
-          theTrackerInfoFlag = "Available";
-          info.find("h2.domain").append("<div>Tracker Information: " + theTrackerInfoFlag+ "</div>");
+          theTrackerInfoFlag = "Yes";
+          info.find("h2.domain").append("<div style=\"color: blue\">Can I find out more about this tracker? </div><div>" + theTrackerInfoFlag+ "</div>");
 
         }else{
-          theTrackerInfoFlag = "Undefined";
-          info.find("h2.domain").append("<div>Tracker Information: " + theTrackerInfoFlag+ "</div>");
+          theTrackerInfoFlag = "No";
+          info.find("h2.domain").append("<div style=\"color: blue\">Can I find out more about this tracker?  </div><div>" + theTrackerInfoFlag+ "</div>");
         }
         
         if (theTrackerInfo){
-          info.find("h2.domain").append("<div>Tracker Name:" + theTrackerInfo.name+ "</div>");
-          info.find("h2.domain").append("<div>Tracker Category:" + theTrackerInfo.category+ "</div>");
-          info.find("h2.domain").append("<div>Tracker URL: <a href=\"" +theTrackerInfo.url +"\">" + theTrackerInfo.url+ "</a></div>")
+          info.find("h2.domain").append("<div style=\"color: blue\">What is the name of this tracker?   </div><div>" + theTrackerInfo.name+ "</div>");
+          info.find("h2.domain").append("<div style=\"color: blue\">What is its purpose?   </div><div>" + theTrackerInfo.category+ "</div>");
+          info.find("h2.domain").append("<div style=\"color: blue\">Is there a website for more details?    </div><div><a href=\"" +theTrackerInfo.url +"\">" + theTrackerInfo.url+ "</a></div>")
         }
 
-        info.find("h2.domain").append("<br>");
+        //info.find("h2.domain").append("<br>");
 
 
         var visitflag = "";
@@ -191,16 +191,16 @@ var GraphRunner = (function(jQuery, d3) {
         }else{
           visitflag = "No";
         }
-        info.find("h2.domain").append("<div>Visited: " + visitflag+ "</div>");
+        info.find("h2.domain").append("<div style=\"color: blue\">Have I visited this site before? </div><div>" + visitflag+ "</div>");
 
         var blockedflag = "";
 
         if (isBlocked(d.host, trackerInfo)){
-          blockedflag = "Blocked";
+          blockedflag = "Yes";
         }else{
-          blockedflag = "Unblocked"
+          blockedflag = "No"
         }
-        info.find("h2.domain").append("<div>Status: " + blockedflag+ "</div>");
+        info.find("h2.domain").append("<div style=\"color: blue\">Is it blocked? </div><div>" + blockedflag+ "</div>");
 
 
         $("#domain-infos").append(info);
