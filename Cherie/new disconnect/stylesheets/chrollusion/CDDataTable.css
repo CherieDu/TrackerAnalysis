@@ -67,14 +67,16 @@ h1 {
   font-size: 75.5%;
   display: block;
   width: 390px;
+  height: 480px;
+
   background: #fff;
   margin: 0 auto;
   padding: 7px 10px;
-  -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
-}
+/*  -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
+*/}
 
 #keywords {
-  margin: 0 auto;
+  margin: 0.2 auto;
   font-size: 1.2em;
   margin-bottom: 15px;
 }
